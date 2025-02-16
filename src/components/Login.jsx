@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
+import { AuthContext } from "../auth/AuthProvider";
 
 
 const Login = () => {
 
-    const [showed,setShowed] =useState(false)
+    const {loginUser}= useContext(AuthContext)
+
+    const [showed, setShowed] = useState(false)
+    
+    const [error,setError]=useState(null)
 
 
     const handleLogin = e => {
@@ -13,8 +18,17 @@ const Login = () => {
 
         const email = e.target.email.value
         const password = e.target.password.value
+        setError(null)
 
-        console.log(email, password);
+        loginUser(email, password)
+            .then(() => {
+            
+            })
+            .catch(error => {
+                setError(error.message)
+        })
+
+        
 
     }
     return (
@@ -55,6 +69,9 @@ const Login = () => {
                     </p>
                 </div>
             </form>
+            {
+                error ? <p className="text-red-500">{error }</p>:""
+            }
         </div>
     );
 };

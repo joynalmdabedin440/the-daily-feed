@@ -7,33 +7,36 @@ import Main from './pages/Main'
 import AuthLayout from './layouts/AuthLayout'
 import Login from './components/Login'
 import Register from './components/Register'
+import AuthProvider from './auth/AuthProvider'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<MainLayout />}>
-          <Route path='category/:id' element={<Main />}></Route>
-          
-          <Route path="" element={<Navigate to="/category/01"/> } />
-          
-         
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route path='category/:id' element={<Main />}></Route>
 
-        </Route>
+            <Route path="" element={<Navigate to="/category/01" />} />
 
-        <Route path='/auth' element={<AuthLayout />}>
-          <Route path='login' element={<Login />}></Route>
-          
-          <Route path='register' element={<Register />} />
 
-        </Route>
 
-        <Route path="*" element={<p>Error:this path not define</p> } />
+          </Route>
 
-      </Routes>
-      
-    </BrowserRouter>
-    
+          <Route path='/auth' element={<AuthLayout />}>
+            <Route path='login' element={<Login />}></Route>
+
+            <Route path='register' element={<Register />} />
+
+          </Route>
+
+          <Route path="*" element={<p>Error:this path not define</p>} />
+
+        </Routes>
+
+      </BrowserRouter>
+    </AuthProvider>
+
   </StrictMode>,
 )

@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
+import { AuthContext } from "../auth/AuthProvider";
 
 
 const Register = () => {
-    const [showed, setShowed] = useState(false)
+    const [showed, setShowed,updateUserProfile] = useState(false)
+
+    const [error,setError] =useState(null)
+
+    const {createUser}  = useContext(AuthContext)
+     
+    
+    
 
 
     const handleRegister = e => {
@@ -15,7 +23,27 @@ const Register = () => {
         const email = e.target.email.value
         const password = e.target.password.value
 
-        console.log(email, password);
+        createUser(email, password)
+            .then(result => {
+            console.log(result);
+            
+            })
+            .catch(error => {
+                setError(error.message)
+            
+            })
+        
+        updateUserProfile({
+            displayName: name,
+            photUrl:photo
+            })
+            .then(() => {
+            console.log('update');
+            
+            })
+            .catch(error => {
+            setError(error.message)
+        })
 
     }
     return (
