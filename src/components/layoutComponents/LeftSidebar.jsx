@@ -19,7 +19,7 @@ const LeftSidebar = () => {
             <h2 className="font-semibold">All Category({categories.length})</h2>
             <div className="flex flex-col gap-2 mt-3">
                 {
-                    categories.map(category => <NavLink to={`category/${category.category_id}`} key={category.category_id} className="btn text-[#9F9F9F] bg-base-100 border-none">{ category.category_name}</NavLink>)
+                    categories.map(category => <NavLink to={`category/${category.category_id}`} key={category.category_id} className="btn text-[#9F9F9F] bg-base-100 border-none justify-start">{ category.category_name}</NavLink>)
                 }
             </div>
             

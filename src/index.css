@@ -8,5 +8,6 @@
 }
 
 a.active{
-    background-color: gray;
+    color: rgb(34, 34, 34);
+    background-color: rgb(201, 200, 200);
 }

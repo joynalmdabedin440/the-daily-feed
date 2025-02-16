@@ -9,7 +9,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index element={<MainLayout/>}>
+        <Route path='/' element={<MainLayout />}>
+          <Route path='category/:id' element={<p>main page</p>}></Route>
+          
+         
 
         </Route>
 
