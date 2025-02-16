@@ -5,14 +5,14 @@ import { AuthContext } from "../auth/AuthProvider";
 
 
 const Register = () => {
-    const [showed, setShowed,updateUserProfile] = useState(false)
+    const [showed, setShowed] = useState(false)
 
-    const [error,setError] =useState(null)
+    const [error, setError] = useState(null)
 
-    const {createUser}  = useContext(AuthContext)
-     
-    
-    
+    const { createUser,updateUserProfile } = useContext(AuthContext)
+
+
+
 
 
     const handleRegister = e => {
@@ -22,28 +22,34 @@ const Register = () => {
         const photo = e.target.profile.value
         const email = e.target.email.value
         const password = e.target.password.value
+        
+        
+
+        setError(null)
 
         createUser(email, password)
-            .then(result => {
-            console.log(result);
-            
+            .then(() => {
+                
+
+                updateUserProfile({
+                    displayName: name,
+                    photoURL: photo
+                })
+                    .then((res) => {
+                        console.log('update', res);
+
+                    })
+                    .catch(error => {
+                        setError(error.message)
+                    })
+
             })
             .catch(error => {
                 setError(error.message)
-            
+
             })
-        
-        updateUserProfile({
-            displayName: name,
-            photUrl:photo
-            })
-            .then(() => {
-            console.log('update');
-            
-            })
-            .catch(error => {
-            setError(error.message)
-        })
+
+
 
     }
     return (
@@ -92,6 +98,9 @@ const Register = () => {
                     </p>
                 </div>
             </form>
+            {
+                error ? <p className="text-red-500">{error}</p> : ""
+            }
         </div>
     );
 };

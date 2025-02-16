@@ -7,12 +7,12 @@ const NewsCard = ({singleNews}) => {
   const [showFullText, setShowFullText] = useState(false);
 
   const { title, author, rating, total_view, thumbnail_url, details } = singleNews
-  console.log(author);
+
   
   
   const { name, published_date, img } = author
   
-  console.log(img);
+
   
  
   /* 
