@@ -4,7 +4,7 @@ import { AuthContext } from "../../auth/AuthProvider";
 
 const RightSidebar = () => {
 
-    const { loginWithGoogle } = useContext(AuthContext)
+    const { loginWithGoogle,user } = useContext(AuthContext)
 
     const handleLoginWithGoogle = () => {
         loginWithGoogle()
@@ -23,9 +23,11 @@ const RightSidebar = () => {
             <div>
                 <h2 className="font-semibold">Login With</h2>
 
-                <button onClick={handleLoginWithGoogle} className="btn  btn-outline w-full my-2 hover:border-green-400 hover:text-green-400 hover:bg-white" > <FaGoogle /> Login with Google</button>
+                <div >
+                    <button disabled={user ? true : false} onClick={handleLoginWithGoogle} className="btn  btn-outline w-full my-2 hover:border-green-400 hover:text-green-400 hover:bg-white " > <FaGoogle /> Login with Google</button>
+                </div>
 
-                <button className="btn btn-outline w-full hover:border-green-400 hover:text-green-400 hover:bg-white "> <FaGithub />Login with Github</button>
+                <button disabled={user ? true : false}className="btn btn-outline w-full hover:border-green-400 hover:text-green-400 hover:bg-white "> <FaGithub />Login with Github</button>
             </div>
 
             <div className="my-4">
@@ -43,7 +45,7 @@ const RightSidebar = () => {
 
             </div>
 
-        </div>
+        </div >
     );
 };
 
