@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
-import { useState } from "react";
+
 import { FaEye, FaStar, FaShareAlt, FaBookmark } from "react-icons/fa";
+import { Link } from 'react-router';
 
 // eslint-disable-next-line react/prop-types
 const NewsCard = ({singleNews}) => {
-  const [showFullText, setShowFullText] = useState(false);
-
-  const { title, author, rating, total_view, thumbnail_url, details } = singleNews
+  
+  console.log(singleNews);
+  
+  const { title, author, rating, total_view, thumbnail_url, details,_id } = singleNews
 
   
   
   const { name, published_date, img } = author
-  
 
-  
- 
   /* 
   {
 "_id": "0282e0e58a5c404fbd15261f11c2ab6a",
@@ -68,13 +67,13 @@ const NewsCard = ({singleNews}) => {
         className="w-full md:h-56  lg:h-80  rounded-lg"
       />
        <p className="text-sm text-gray-600 mt-2">
-        {showFullText ? details : `${details.substring(0, 100)}...`} 
-        <span 
+        {`${details.substring(0, 100)}...`} 
+        <Link to={`/news/${_id}`}
           className="text-red-500 cursor-pointer"
-          onClick={() => setShowFullText(!showFullText)}
+         
         > 
-          {showFullText ? " Show Less" : " Read More"}
-        </span>
+          Read More
+        </Link>
       </p>
       <hr className="my-4 border-gray-300" />
       <div className="flex justify-between items-center mt-4">

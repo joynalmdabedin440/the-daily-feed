@@ -8,6 +8,7 @@ import AuthLayout from './layouts/AuthLayout'
 import Login from './components/Login'
 import Register from './components/Register'
 import AuthProvider from './auth/AuthProvider'
+import NewsDetails from './pages/NewsDetails'
 
 
 createRoot(document.getElementById('root')).render(
@@ -16,13 +17,22 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MainLayout />}>
-            <Route path='category/:id' element={<Main />}></Route>
+            <Route path='category/:id' element={<Main />}>
+
+
+            </Route>
 
             <Route path="" element={<Navigate to="/category/01" />} />
 
 
 
           </Route>
+
+          <Route path='news/:id' element={<NewsDetails />} >
+
+          </Route>
+
+
 
           <Route path='/auth' element={<AuthLayout />}>
             <Route path='login' element={<Login />}></Route>
