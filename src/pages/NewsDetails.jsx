@@ -7,6 +7,8 @@ import { FaBackward } from "react-icons/fa";
 
 const NewsDetails = () => {
 
+
+
     const { id } = useParams()
 
     const [newsDetails, setNewsDetails] = useState()

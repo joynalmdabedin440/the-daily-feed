@@ -7,19 +7,25 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
 
-    const [user,setUser]=useState(null)
+    const [user, setUser] = useState(null)
+    
+    const [loading,setLoading] =useState(true)
     
 
     const createUser = (email, password) => {
+        setLoading(true)
+
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
 
     const loginUser = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
     const updateUserProfile = (userDetails) => {
+        setLoading(true)
         return updateProfile(auth.currentUser,userDetails)
     }
 
@@ -30,6 +36,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unMount = onAuthStateChanged(auth, (user) => {
             setUser(user)
+            setLoading(false)
         })
 
         return () => {
@@ -43,7 +50,8 @@ const AuthProvider = ({ children }) => {
         loginUser,
         user,
         updateUserProfile,
-        userLogOut
+        userLogOut,
+        loading
         
     }
 

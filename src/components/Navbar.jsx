@@ -26,12 +26,13 @@ const Navbar = () => {
             <div>
                 {
                     user ? <div className="flex items-center gap-2">
-                        <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="user" />
-                        <h3 className="font-bold">{user?.displayName?.toUpperCase()}</h3>
+                        <img className="w-10 h-10 rounded-full" src={user.photoURL || userIcon } alt="user" />
+                        <h3 className="font-bold">{user?.displayName?.toUpperCase() || user.email}</h3>
                     </div> :
 
-                        <div>
-                            <img src={userIcon} alt="user" />
+                        <div className="flex items-center justify-center gap-2">
+                            <img src={userIcon} alt="userIcon" />
+                            <span>Please Login</span>
                         </div>
 
                 }

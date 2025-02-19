@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 
 
@@ -9,6 +9,8 @@ const Register = () => {
 
     const [error, setError] = useState(null)
 
+    const navigate = useNavigate()
+
     const { createUser,updateUserProfile } = useContext(AuthContext)
 
 
@@ -16,6 +18,8 @@ const Register = () => {
 
 
     const handleRegister = e => {
+
+        
         e.preventDefault()
 
         const name = e.target.name.value
@@ -35,8 +39,8 @@ const Register = () => {
                     displayName: name,
                     photoURL: photo
                 })
-                    .then((res) => {
-                        console.log('update', res);
+                    .then(() => {
+                        navigate('/category/01')
 
                     })
                     .catch(error => {
@@ -48,6 +52,9 @@ const Register = () => {
                 setError(error.message)
 
             })
+        
+        
+        e.target.reset()
 
 
 
