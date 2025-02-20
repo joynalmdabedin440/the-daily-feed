@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyASCdZpv27Xsk-qif_vpCfCybv6YBM0OFg",
-  authDomain: "the-daily-feed-83f19.firebaseapp.com",
-  projectId: "the-daily-feed-83f19",
-  storageBucket: "the-daily-feed-83f19.firebasestorage.app",
-  messagingSenderId: "468717086285",
-  appId: "1:468717086285:web:e561b4ffeb2b858c1c9e04"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
