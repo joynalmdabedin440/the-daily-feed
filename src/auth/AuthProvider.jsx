@@ -15,8 +15,6 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     const provider = new GoogleAuthProvider()
-    
-   console.log(bookMarks);
    
     const loginWithGoogle = () => {
         setLoading(true)

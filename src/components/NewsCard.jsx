@@ -29,10 +29,10 @@ const NewsCard = ({ singleNews }) => {
   }
 
   useEffect(() => {
-    // Every time the bookMarks change call an API, call localstorage, etc.
+  
     if (bookMarks.length > 0) {
       
-      // Example: Save to local storage (use with caution!)
+    
       localStorage.setItem("myBookmarks", JSON.stringify(bookMarks));
     }
   }, [bookMarks]);
