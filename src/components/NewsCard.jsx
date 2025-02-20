@@ -24,6 +24,8 @@ const NewsCard = ({ singleNews }) => {
 
   const handleBookMark = () => {
     setBookMarks(prev => [...prev, singleNews])
+
+    alert("This News Successfully add Bookmarks")
   }
 
   useEffect(() => {

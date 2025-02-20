@@ -11,6 +11,7 @@ import AuthProvider from './auth/AuthProvider'
 import NewsDetails from './pages/NewsDetails'
 import PrivateRoute from './routes/PrivateRoute'
 import BookMarksCard from './components/layoutComponents/BookMarksCard'
+import About from './components/About'
 
 
 createRoot(document.getElementById('root')).render(
@@ -34,7 +35,10 @@ createRoot(document.getElementById('root')).render(
 
           </Route>
 
-          <Route path='/bookmarks' element={ <BookMarksCard/>} />
+          <Route path='/bookmarks' element={<BookMarksCard />} />
+          
+          
+          <Route path="/about" element={<About />} />
 
 
 

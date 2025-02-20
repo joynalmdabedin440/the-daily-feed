@@ -10,4 +10,7 @@
 a.active{
     color: rgb(34, 34, 34);
     background-color: rgb(201, 200, 200);
+    padding: 10px;
+
+    border-radius: 10px;
 }
