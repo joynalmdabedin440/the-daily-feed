@@ -8,13 +8,16 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
 
+    const [bookMarks,setBookMarks] =useState([])
+ 
     const [user, setUser] = useState(null)
     
     const [loading, setLoading] = useState(true)
 
     const provider = new GoogleAuthProvider()
     
-
+   console.log(bookMarks);
+   
     const loginWithGoogle = () => {
         setLoading(true)
         return signInWithPopup(auth,provider)
@@ -62,7 +65,9 @@ const AuthProvider = ({ children }) => {
         user,
         updateUserProfile,
         userLogOut,
-        loading
+        loading,
+        setBookMarks,
+        bookMarks
         
     }
 

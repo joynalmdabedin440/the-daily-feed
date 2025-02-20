@@ -42,7 +42,7 @@ const Navbar = () => {
             <div className="space-x-3">
                 <NavLink to="/" className="hover:text-green-400">Home</NavLink>
                 <NavLink to="/about" className="hover:text-green-400">About</NavLink>
-                <NavLink to="/career" className="hover:text-green-400">Career</NavLink>
+                <NavLink to="/bookmarks" className="hover:text-green-400">Bookmarks</NavLink>
 
             </div>
             <div className="flex items-center gap-2">

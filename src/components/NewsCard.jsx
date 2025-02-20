@@ -1,19 +1,39 @@
 import PropTypes from 'prop-types';
+import { useContext, useEffect } from 'react';
 
 import { FaEye, FaStar, FaShareAlt, FaBookmark } from "react-icons/fa";
 import { Link } from 'react-router';
+import { AuthContext } from '../auth/AuthProvider';
 
 // eslint-disable-next-line react/prop-types
-const NewsCard = ({singleNews}) => {
-  
-  console.log(singleNews);
-  
-  const { title, author, rating, total_view, thumbnail_url, details,_id } = singleNews
+const NewsCard = ({ singleNews }) => {
 
-  
-  
+  const { bookMarks, setBookMarks } = useContext(AuthContext)
+
+
+
+
+  const { title, author, rating, total_view, thumbnail_url, details, _id } = singleNews
+
+
+
+
   const { name, published_date, img } = author
 
+
+
+  const handleBookMark = () => {
+    setBookMarks(prev => [...prev, singleNews])
+  }
+
+  useEffect(() => {
+    // Every time the bookMarks change call an API, call localstorage, etc.
+    if (bookMarks.length > 0) {
+      
+      // Example: Save to local storage (use with caution!)
+      localStorage.setItem("myBookmarks", JSON.stringify(bookMarks));
+    }
+  }, [bookMarks]);
   /* 
   {
 "_id": "0282e0e58a5c404fbd15261f11c2ab6a",
@@ -45,7 +65,7 @@ const NewsCard = ({singleNews}) => {
     <div className="card w-full bg-base-100 shadow-xl border border-gray-200 p-4 relative">
       <div className="absolute top-4 right-4 flex gap-3">
         <FaShareAlt className="text-gray-500 cursor-pointer hover:text-gray-700" />
-        <FaBookmark className="text-gray-500 cursor-pointer hover:text-gray-700" />
+        <FaBookmark onClick={handleBookMark} className="text-green-500 cursor-pointer hover:text-gray-700" />
       </div>
       <div className="flex items-center gap-4 mb-4">
         <img
@@ -54,8 +74,8 @@ const NewsCard = ({singleNews}) => {
           className="w-12 h-12 rounded-full"
         />
         <div>
-          <h3 className="text-md font-bold">{name }</h3>
-          <p className="text-sm text-gray-500">{ published_date}</p>
+          <h3 className="text-md font-bold">{name}</h3>
+          <p className="text-sm text-gray-500">{published_date}</p>
         </div>
       </div>
       <h2 className="text-lg font-bold mb-2">
@@ -66,12 +86,12 @@ const NewsCard = ({singleNews}) => {
         alt="News Thumbnail"
         className="w-full md:h-56  lg:h-80  rounded-lg"
       />
-       <p className="text-sm text-gray-600 mt-2">
-        {`${details.substring(0, 100)}...`} 
+      <p className="text-sm text-gray-600 mt-2">
+        {`${details.substring(0, 100)}...`}
         <Link to={`/news/${_id}`}
           className="text-red-500 cursor-pointer"
-         
-        > 
+
+        >
           Read More
         </Link>
       </p>
@@ -79,7 +99,7 @@ const NewsCard = ({singleNews}) => {
       <div className="flex justify-between items-center mt-4">
         <div className="flex items-center">
           <FaStar className="text-orange-400" />
-          <p className="ml-2 text-gray-700 font-semibold">{ rating?.number}</p>
+          <p className="ml-2 text-gray-700 font-semibold">{rating?.number}</p>
         </div>
         <p className="text-gray-500 flex items-center">
           <FaEye className="mr-1" /> {total_view}
@@ -90,7 +110,7 @@ const NewsCard = ({singleNews}) => {
 };
 
 NewsCard.propTypes = {
-  singleNews:PropTypes.object
+  singleNews: PropTypes.object
 }
 
 export default NewsCard;

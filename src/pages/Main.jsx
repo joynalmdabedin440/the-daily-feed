@@ -19,9 +19,6 @@ const Main = () => {
 
     }, [id])
 
-    console.log(news);
-
-
 
     return (
         <div>
@@ -29,7 +26,7 @@ const Main = () => {
 
             <div className="m-2 space-y-2">
                 {
-                    news.map(singleNews => <NewsCard singleNews={singleNews} key={singleNews.id} />)
+                    news.map(singleNews => <NewsCard singleNews={singleNews} key={singleNews._id} />)
                 }
             </div>
 
